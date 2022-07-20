@@ -13,7 +13,7 @@ class UpdateNotebookRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateNotebookRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fio'=>'string',
+            'company'=>'string',
+            'phone'=>'string',
+            'email'=>'string',
+            'birthday'=>'date',
+            'photo'=>'file',
         ];
     }
 }

@@ -21,6 +21,9 @@ Route::get('/', function () {
 //api/v1
 Route::controller(NotebookController::class)->group(function (){
     Route::get('/api/v1/notebook/','index');
+    Route::get('/api/v1/notebook/{notebook}','show');
+    Route::post('/api/v1/notebook/','store');
+    Route::post('/api/v1/notebook/{notebook}','update');
+    Route::delete('/api/v1/notebook/{notebook}','destroy');
 });
-//Route::get('/api/v1/notebook',[NotebookController::class,'index'])->name('notebook.index');
 

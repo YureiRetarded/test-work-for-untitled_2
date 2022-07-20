@@ -22,7 +22,9 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             //Будет храниться путь до изображения
             $table->string('photo')->nullable();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
