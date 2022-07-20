@@ -6,6 +6,7 @@ use App\Http\Resources\NotebookResource;
 use App\Models\Notebook;
 use App\Http\Requests\StoreNotebookRequest;
 use App\Http\Requests\UpdateNotebookRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class NotebookController extends Controller
@@ -31,6 +32,7 @@ class NotebookController extends Controller
     public function store(StoreNotebookRequest $request)
     {
         $data = $request->validated();
+        $data['photo'] = Storage::put('/images', $data['photo']);
         $notebook = Notebook::create($data);
         return new NotebookResource($notebook);
     }
@@ -39,6 +41,7 @@ class NotebookController extends Controller
     public function update(UpdateNotebookRequest $request, Notebook $notebook)
     {
         $data = $request->validated();
+        $data['photo'] = Storage::put('/images', $data['photo']);
         $notebook->update($data);
         $notebook->fresh();
         return new NotebookResource($notebook);
