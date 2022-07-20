@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\v1\NotebookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//api/v1
+Route::controller(NotebookController::class)->group(function (){
+    Route::get('/api/v1/notebook/','index');
+});
+//Route::get('/api/v1/notebook',[NotebookController::class,'index'])->name('notebook.index');
+
