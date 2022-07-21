@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('api')->get('/v1', function (Request $request) {
-    Route::controller(NotebookController::class)->group(function (){
+Route::middleware('api')->group(function (){
+    Route::controller(App\Http\Controllers\API\v1\NotebookController::class)->group(function (){
         Route::get('/notebook/','index');
         Route::get('/notebook/{notebook}','show');
         Route::post('/notebook/','store');
@@ -23,4 +24,5 @@ Route::middleware('api')->get('/v1', function (Request $request) {
         Route::delete('/notebook/{notebook}','destroy');
     });
 });
+
 

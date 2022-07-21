@@ -7,6 +7,8 @@ use App\Models\Notebook;
 use App\Http\Requests\StoreNotebookRequest;
 use App\Http\Requests\UpdateNotebookRequest;
 use Illuminate\Support\Facades\Storage;
+use Mockery\Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 
 class NotebookController extends Controller
@@ -31,27 +33,65 @@ class NotebookController extends Controller
     //Добавлении записи в базу
     public function store(StoreNotebookRequest $request)
     {
-        $data = $request->validated();
-        $data['photo'] = Storage::put('/images', $data['photo']);
-        $notebook = Notebook::create($data);
-        return new NotebookResource($notebook);
+        //В случае ошибки возвращает сообщение об ошибки
+        try {
+
+            $data = $request->validate([
+                'fio' => ['required', 'max:255'],
+                'phone' => ['required', 'max:255'],
+                'email' => ['required', 'max:255']
+            ]);
+
+            if (isset($data['photo'])) {
+                $data['photo'] = Storage::put('/images', $data['photo']);
+            }
+            $notebook = Notebook::create($data);
+            return new NotebookResource($notebook);
+        } catch (\Exception $e) {
+            throw new HttpException(400, $e->getMessage());
+        }
+
     }
 
     //Изменение записи по id
     public function update(UpdateNotebookRequest $request, Notebook $notebook)
     {
-        $data = $request->validated();
-        $data['photo'] = Storage::put('/images', $data['photo']);
-        $notebook->update($data);
-        $notebook->fresh();
-        return new NotebookResource($notebook);
+        //В случае ошибки возвращает сообщение об ошибки
+        try {
+
+            $data = $request->validate([
+                'fio' => ['required', 'max:255'],
+                'phone' => ['required', 'max:255'],
+                'email' => ['required', 'max:255']
+            ]);
+
+            if (isset($data['photo'])) {
+                $data['photo'] = Storage::put('/images', $data['photo']);
+            }
+            $notebook->update($data);
+            $notebook->fresh();
+            return new NotebookResource($notebook);
+        } catch (\Exception $e) {
+            throw new HttpException(400, $e->getMessage());
+        }
+
     }
 
     //Удаление записи по id
     //Используется SoftDeletes
     public function destroy(Notebook $notebook)
     {
-        $notebook->delete();
-        return 'NotesDeleted';
+
+        try {
+            $notebook->delete();
+            return response()->json([
+                'Message' => 'Notes was deleted'
+            ]);
+
+        } catch (\Exception $e) {
+            throw new HttpException(404, $e->getMessage());
+        }
+
+
     }
 }
