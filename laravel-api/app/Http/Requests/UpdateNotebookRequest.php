@@ -24,10 +24,10 @@ class UpdateNotebookRequest extends FormRequest
     public function rules()
     {
         return [
-            'fio'=>'string',
-            'company'=>'string',
-            'phone'=>'string',
-            'email'=>'string',
+            'fio'=>'string|required|max:255',
+            'company'=>'string|max:255',
+            'phone'=>'string|required|max:255',
+            'email'=>'string|required|max:255',
             'birthday'=>'date',
             'photo'=>'file',
         ];
