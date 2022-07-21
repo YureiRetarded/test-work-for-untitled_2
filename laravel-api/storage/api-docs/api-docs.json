@@ -1,0 +1,38 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel-api documentation",
+        "contact": {
+            "email": "zaq22022015@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/v1",
+            "description": "Laravel-api server"
+        }
+    ],
+    "paths": {
+        "/notebook": {
+            "get": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Get all notes",
+                "operationId": "NotesAll",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Notebook",
+            "description": "Work with notes"
+        }
+    ]
+}

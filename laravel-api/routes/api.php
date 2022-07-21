@@ -24,5 +24,6 @@ Route::middleware('api')->group(function (){
         Route::delete('/notebook/{notebook}','destroy');
     });
 });
+Route::post('/',[\App\Http\Controllers\api\DocumentationController::class,'index']);
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\NotebookResource;
 use App\Models\Notebook;
 use App\Http\Requests\StoreNotebookRequest;
@@ -14,6 +15,21 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class NotebookController extends Controller
 {
 
+
+    /**
+     * @OA\Get(
+     *     path="/notebook",
+     *     summary="Get all notes",
+     *     operationId="NotesAll",
+     *     tags={"Notebook"},
+     *     @OA\Response(
+     *          response="200",
+     *          description="OK"
+     *     )
+     * )
+     *
+     *
+     */
     //Получение всех записей(постранично)
     public function index()
     {
@@ -85,7 +101,7 @@ class NotebookController extends Controller
         try {
             $notebook->delete();
             return response()->json([
-                'Message' => 'Notes was deleted'
+                'message' => 'Notes was deleted'
             ]);
 
         } catch (\Exception $e) {
