@@ -24,6 +24,8 @@ Route::middleware('api')->group(function (){
         Route::delete('/notebook/{notebook}','destroy');
     });
 });
-Route::post('/',[\App\Http\Controllers\api\DocumentationController::class,'index']);
+Route::fallback(function (){
+    abort(404, 'API resource not found');
+});
 
 
