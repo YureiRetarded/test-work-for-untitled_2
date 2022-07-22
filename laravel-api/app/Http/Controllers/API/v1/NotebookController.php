@@ -107,7 +107,7 @@ class NotebookController extends Controller
      *     tags={"Notebook"},
      *     @OA\RequestBody(
      *     @OA\MediaType(
-     *             mediaType="application/json",
+     *             mediaType="multipart/form-data",
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="fio",
@@ -129,6 +129,11 @@ class NotebookController extends Controller
      *                     property="birthday",
      *                     type="date"
      *                 ),
+     *                 @OA\Property(
+     *                      property="photo",
+     *                      type="string",
+     *                      format="binary"
+     *                  ),
      *                 example={"fio": "aa vv bb", "email": "awdawd@a.aw", "phone": "12345678","company":"mvd","birthday":"1985-07-31"}
      *             )
      *         )
@@ -171,8 +176,8 @@ class NotebookController extends Controller
      *          required=true,
      *     ),
      *     @OA\RequestBody(
-     *     @OA\MediaType(
-     *             mediaType="application/json",
+     *    @OA\MediaType(
+     *             mediaType="multipart/form-data",
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="fio",
@@ -194,6 +199,11 @@ class NotebookController extends Controller
      *                     property="birthday",
      *                     type="date"
      *                 ),
+     *                 @OA\Property(
+     *                      property="photo",
+     *                      type="string",
+     *                      format="binary"
+     *                  ),
      *                 example={"fio": "aa vv bb", "email": "awdawd@a.aw", "phone": "12345678","company":"mvd","birthday":"1985-07-31"}
      *             )
      *         )
