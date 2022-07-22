@@ -17,6 +17,7 @@
 `docker exec -it project-app bash ` \
 **И пропишите** \
 `php artisan migrate --seed ` \
+`php artisan key:generate  `\
 **Приложение запушено и готово к работе** \
 
 Ссылка с документацией \
