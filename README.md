@@ -14,7 +14,7 @@
 **Пропишите** \
  `docker-compose up -d     ` \
 **Затем перейдите в контейнер командой** \
-`docker exec -it project-app bash ` \
+`docker exec -it project_app bash ` \
 **И пропишите** \
 `php artisan migrate --seed ` \
 `php artisan key:generate  `\
